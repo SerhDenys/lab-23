@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Структура для опису квартири
 typedef struct {
     char street[50];
     int building;
@@ -15,11 +14,9 @@ int main() {
     int n;
     printf("Введіть кількість квартир: ");
     scanf("%d", &n);
-    
-    // Виділення пам'яті для масиву структур
+
     Apartment *apartments = (Apartment*)malloc(n * sizeof(Apartment));
-    
-    // Введення даних про квартири
+
     for (int i = 0; i < n; i++) {
         printf("\nКвартира #%d:\n", i+1);
         printf("Вулиця: ");
@@ -31,13 +28,11 @@ int main() {
         printf("Вартість: ");
         scanf("%f", &apartments[i].price);
     }
-    
-    // Введення назви вулиці для пошуку
+
     char search_street[50];
     printf("\nВведіть назву вулиці для пошуку: ");
     scanf("%s", search_street);
-    
-    // Відкриття файлу для запису
+
     FILE *file = fopen("apartments.txt", "w");
     if (file == NULL) {
         printf("Помилка відкриття файлу!\n");
@@ -67,8 +62,7 @@ int main() {
         printf("Квартир на вулиці %s не знайдено.\n", search_street);
         fprintf(file, "Квартир на вулиці %s не знайдено.\n", search_street);
     }
-    
-    // Закриття файлу
+
     fclose(file);
     free(apartments);
     
